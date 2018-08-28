@@ -1,17 +1,13 @@
 import javafx.application.Application;
+import javafx.geometry.Pos;
 import javafx.scene.Group;
-import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.canvas.Canvas;
-import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.Label;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Line;
+import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import javafx.scene.shape.Rectangle;
-import sun.security.provider.certpath.SunCertPathBuilder;
-
-import java.awt.*;
 
 /**
  * PinBall game coordinator class. A parent class
@@ -25,27 +21,14 @@ public class PinBallGame extends Application {
     public static void main(String[]args) {
         launch(args);
     }
-
-    public int getBoardWidth() {
-        return 0;
-    }
-    public int getBoardHeight() {
-        return 0;
-    }
-    public int getBoardRows() {
-        return 0;
-    }
-    public int getBoardColumns() {
-        return 0;
-    }
     @Override
     public void start(Stage primaryStage) {
         primaryStage.setTitle ("PinBall Machine Game");
 
         Group group = new Group();
-        BorderPane pane = new BorderPane();
-//        Rectangle rect = new Rectangle(50, 50);
-//        HBox hBox = new HBox();
+        VBox vBox = new VBox();
+//        BorderPane pane = new BorderPane();
+        HBox hBox = new HBox();
         GameBoard gameBoard = new GameBoard();
         Score score = new Score();
 
@@ -85,10 +68,11 @@ public class PinBallGame extends Application {
                 case GameBoard.BLUE_TILE:
                     Rectangle rectBlue = new Rectangle(xi,yi,width1,height1);
                     xi += 50;
-                    rectBlue.setFill(Color.BLUE);
+                    rectBlue.setFill(Color.rgb(72, 103, 178));
+                    rectBlue.setStroke(Color.rgb(48, 72, 132));
 //                    Line verticalLine = new Line(xi, yi, width1,height1);
 //                    verticalLine.setStroke(Color.BLACK);
-                    pane.getChildren().add(rectBlue);
+                    group.getChildren().add(rectBlue);
 //                    pane.getChildren().add(verticalLine);
 //                    System.out.println(currentWidth + " blue");
                     // rect.fillRect(currentWidth * tileSize, currentHeight * tileSize, tileSize, tileSize);
@@ -96,10 +80,11 @@ public class PinBallGame extends Application {
                 case GameBoard.YELLOW_TILE:
                     Rectangle rectYellow = new Rectangle(xi,yi,width1,height1);
                     xi += 50;
-                    rectYellow.setFill(Color.YELLOW);
+                    rectYellow.setFill(Color.rgb(252, 194, 0));
+                    rectYellow.setStroke(Color.rgb(48, 72, 132));
 //                    Line line2 = new Line(xi, yi, width1, height1);
 //                    line2.setStroke(Color.BLACK);
-                    pane.getChildren().add(rectYellow);
+                    group.getChildren().add(rectYellow);
 //                    pane.getChildren().add(line2);
 
 //                    System.out.println(GameBoard.YELLOW_TILE);
@@ -122,34 +107,45 @@ public class PinBallGame extends Application {
             }
 //            currentWidth++;
         }
-        int xLine = 0;
-        int yLine = 0;
-        for (int i = 0; i < 4; i++) {
-            xLine += 50;
-            Line verticalLine = new Line();
-            verticalLine.setStartX(xLine);
-            verticalLine.setStartY(yLine);
-            verticalLine.setEndX(xLine);
-            verticalLine.setEndY(400);
-            verticalLine.setStroke(Color.BLACK);
-            pane.getChildren().add(verticalLine);
-        }
-        xLine = 0;
-        for (int i = 0; i < 7; i++) {
-            yLine += 50;
-            Line horizontalLine = new Line();
-            horizontalLine.setStartX(xLine);
-            horizontalLine.setStartY(yLine);
-            horizontalLine.setEndX(250);
-            horizontalLine.setEndY(yLine);
-            horizontalLine.setStroke(Color.BLACK);
-            pane.getChildren().add(horizontalLine);
-        }
 
-//        pane.setPrefSize(200, 500);
 
-        group.getChildren().add(pane);
-        primaryStage.setScene(new Scene(group, 250, 500));
+
+        Rectangle rectangle =  new Rectangle(0, 400, 250, 20);
+        rectangle.setFill(Color.GRAY);
+
+        Button reset = new Button("reset");
+        Button play = new Button("play");
+        Label scoreLabel = new Label("000");
+
+        reset.setStyle("-fx-font: 22 arial; -fx-font-weight: bold;");
+        play.setStyle("-fx-font: 22 arial; -fx-font-weight: bold;");
+        scoreLabel.setStyle("-fx-background-color: black");
+        scoreLabel.setTextFill(Color.RED);
+        scoreLabel.setAlignment(Pos.CENTER);
+
+        reset.setPrefSize(100, 40);
+        play.setPrefSize(100, 40);
+        scoreLabel.setPrefSize(50, 40);
+
+        hBox.getChildren().add(reset);
+        hBox.getChildren().add(scoreLabel);
+        hBox.getChildren().add(play);
+        /**
+         * instantiate all classes
+         * animation timer
+         *
+         */
+//        pane.setPrefSize(250, 500);
+
+        vBox.getChildren().add(group);
+//        vBox.getChildren().add(Ball);
+//        pane.getChildren().add(rectangle);
+//        vBox.getChildren().add(pane);
+        vBox.getChildren().add(rectangle);
+        vBox.getChildren().add(hBox);
+//        pane.getChildren().add(rectangle);
+//        pane.getChildren().add(hBox);
+        primaryStage.setScene(new Scene(vBox, 250, 460));
         primaryStage.show();
     }
 }
