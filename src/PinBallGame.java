@@ -44,7 +44,7 @@ public class PinBallGame extends Application {
 
         Group group = new Group();
         BorderPane pane = new BorderPane();
-        Rectangle rect = new Rectangle(50, 50);
+//        Rectangle rect = new Rectangle(50, 50);
 //        HBox hBox = new HBox();
         GameBoard gameBoard = new GameBoard();
         Score score = new Score();
@@ -57,23 +57,23 @@ public class PinBallGame extends Application {
         System.out.println(gameBoard);
         System.out.println("Score is " + score);
 
-        int width = gameBoard.getWidth();
-        int height = gameBoard.getHeight();
-        int pixelWidth = (int)rect.getWidth();
-        int pixelHeight = (int)rect.getHeight();
-        System.out.println("Pixels " + pixelWidth);
-        int tileSize = 0;
-        rect.setFill(Color.BLACK);
+//        int width = gameBoard.getWidth();
+//        int height = gameBoard.getHeight();
+//        int pixelWidth = (int)rect.getWidth();
+//        int pixelHeight = (int)rect.getHeight();
+//        System.out.println("Pixels " + pixelWidth);
+//        int tileSize = 0;
+//        rect.setFill(Color.BLACK);
         // rect.fillRect(0,0,pixelWidth, pixelHeight);
 
-        System.out.println("pixelHeight is " + pixelHeight);
-        if (pixelWidth < pixelHeight) {
-            tileSize = pixelWidth / width;
-        }
-        else {
-            tileSize = pixelHeight / height;
-        }
-        System.out.println("TileSize is " + tileSize);
+//        System.out.println("pixelHeight is " + pixelHeight);
+//        if (pixelWidth < pixelHeight) {
+//            tileSize = pixelWidth / width;
+//        }
+//        else {
+//            tileSize = pixelHeight / height;
+//        }
+//        System.out.println("TileSize is " + tileSize);
         char[] board = gameBoard.toString().toCharArray();
 //        int currentWidth = 0;
 //        int currentHeight = 0;
