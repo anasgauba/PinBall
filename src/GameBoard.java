@@ -42,13 +42,13 @@ public class GameBoard {
         return str;
     }
 
-    public int getWidth() {
-        return this.NUM_COLS;
-    }
-
-    public int getHeight() {
-        return this.NUM_ROWS;
-    }
+//    public int getWidth() {
+//        return this.NUM_COLS;
+//    }
+//
+//    public int getHeight() {
+//        return this.NUM_ROWS;
+//    }
     /**
      * Randomly generate the Yellow Tile.
      * Grabs a random location of both row and col,
