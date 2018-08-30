@@ -1,4 +1,5 @@
-import java.awt.*;
+import static java.lang.Math.cos;
+import static java.lang.StrictMath.sin;
 
 /**
  * @version date: 2018-08-24
@@ -6,15 +7,19 @@ import java.awt.*;
  */
 public class Ball {
 
-    private Point ball;
-    private double angle = Math.random();
+    private double x;
+    private double y;
+    private double angle = Math.toDegrees(45);
+//    private boolean isPlaying = true;
+    Display display;
+    Mouse mouse;
 
     /**
      *
      */
-    public Ball() {
-
-
+    public Ball(Display display, Mouse mouse) {
+        this.display = display;
+        this.mouse = mouse;
     }
 
     /**
@@ -24,4 +29,32 @@ public class Ball {
 
     }
 
+    public void move(double pixels) {
+        double xOffSet = pixels*cos(angle);
+        double yOffSet = pixels*sin(angle);
+        if (setInPlay()) {
+            x += xOffSet;
+            y += yOffSet;
+
+        }
+    }
+
+    public void getLocation() {
+
+    }
+
+    public boolean setInPlay() {
+        return true;
+    }
+
+    public boolean setOffPlay() {
+        return false;
+    }
+
+    public void setStartLocaton() {
+        Mouse mouse = new Mouse();
+        if (setOffPlay()) {
+            mouse.getMouseMovedHandler();
+        }
+    }
 }

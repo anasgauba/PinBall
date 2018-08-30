@@ -1,5 +1,3 @@
-import javafx.scene.layout.Pane;
-
 import java.util.Random;
 
 /**
@@ -13,6 +11,7 @@ public class GameBoard {
     private char[][] gameBoard;
     public static final char BLUE_TILE = '.';
     public static final char YELLOW_TILE = 'Y';
+    public static final char WALL_REP = 'X';
     Random random = new Random();
     /**
      * Constructing a gameBoard object with empty spots.
@@ -32,14 +31,14 @@ public class GameBoard {
      * @return the gameBoard.
      */
     public String toString() {
-        String str = "";
+        StringBuilder str = new StringBuilder();
         for (int r = 0; r < NUM_ROWS; r++) {
             for (int c = 0; c < NUM_COLS; c++) {
-                str += gameBoard[r][c];
+                str.append(gameBoard[r][c]);
             }
-            str += '\n';
+            str.append('\n');
         }
-        return str;
+        return str.toString();
     }
 
 //    public int getWidth() {

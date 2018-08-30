@@ -1,13 +1,6 @@
+import javafx.animation.AnimationTimer;
 import javafx.application.Application;
-import javafx.geometry.Pos;
-import javafx.scene.Group;
-import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
-import javafx.scene.control.Button;
 import javafx.stage.Stage;
-import javafx.scene.shape.Rectangle;
 
 /**
  * PinBall game coordinator class. A parent class
@@ -21,13 +14,29 @@ public class PinBallGame extends Application {
     public static void main(String[]args) {
         launch(args);
     }
+    /**
+     * instantiate all classes
+     * animation timer
+     */
     @Override
     public void start(Stage primaryStage) {
-        VBox vBox = new VBox();
-        Display display = new Display(vBox);
+        Mouse mouse = new Mouse();
+        Display display = new Display(primaryStage);
+        GameControls gameControls = new GameControls(display, mouse);
+        GameBoard gameBoard = new GameBoard();
+        Ball ball = new Ball(display, mouse);
+        Score score = new Score(display);
+//        Ball ball = new Ball();
+//        Score score = new Score();
+        gameControls.getMode();
 
-        primaryStage.setTitle ("PinBall Machine Game");
-        primaryStage.setScene(new Scene(vBox, 250, 460));
-        primaryStage.show();
+        AnimationTimer animationTimer = new AnimationTimer() {
+            @Override
+            public void handle(long now) {
+
+
+            }
+        };
+        animationTimer.start();
     }
 }

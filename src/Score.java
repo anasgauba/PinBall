@@ -5,13 +5,15 @@
  */
 public class Score {
     private int score;
+    Display display;
 
     /**
      * Initially, constructing an empty
      * scoreboard object.
      */
-    public Score() {
+    public Score(Display display) {
         reset();
+        this.display = display;
     }
 
     /**
@@ -41,7 +43,9 @@ public class Score {
      * @param value
      * @return incremented value.
      */
-    public int incrementBy(int value) {
-        return this.score += value;
+    public void incrementBy(int value) {
+        this.score += value;
+        display.setScore(value);
+
     }
 }
