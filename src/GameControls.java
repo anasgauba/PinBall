@@ -1,6 +1,3 @@
-import javafx.event.EventHandler;
-import javafx.scene.input.MouseEvent;
-
 /**
  * @version date: 2018-08-24
  * @author Anas Farooq Gauba
@@ -22,32 +19,18 @@ public class GameControls {
      *
      * @return
      */
-    public void getMode() {
+    public boolean getMode() {
+        if (display.play.isDisabled()) {
+            return true;
+        }
+        return false;
+//        display.play.setOnMousePressed(mouse.getMouseMovedHandler());
 //        display.setPlayButton(false);
 
-        display.setReset(true);
-        display.reset.setStyle("-fx-font: 22 arial; -fx-font-weight: bold; -fx-background-color: gray");
-        display.play.setStyle("-fx-font: 22 arial; -fx-font-weight: bold; -fx-background-color: yellow");
-        display.play.setOnMousePressed(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                System.out.println("Clicked play");
-                display.setPlayButton(true);
-                display.setReset(false);
-                display.reset.setStyle("-fx-font: 22 arial; -fx-font-weight: bold; -fx-background-color: yellow");
-                display.play.setStyle("-fx-font: 22 arial; -fx-font-weight: bold; -fx-background-color: gray");
-            }
-        });
-        display.reset.setOnMousePressed(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                System.out.println("Clicked reset");
-                display.setPlayButton(false);
-                display.setReset(true);
-                display.play.setStyle("-fx-font: 22 arial; -fx-font-weight: bold; -fx-background-color: yellow");
-                display.reset.setStyle("-fx-font: 22 arial; -fx-font-weight: bold; -fx-background-color: gray");
-            }
-        });
+//        display.setReset(true);
+//        display.reset.setStyle("-fx-font: 22 arial; -fx-font-weight: bold; -fx-background-color: gray");
+//        display.play.setStyle("-fx-font: 22 arial; -fx-font-weight: bold; -fx-background-color: yellow");
+
         //Tile have x and y, color, getters, setters.
         //make buttons here. if the button is pressed, true
     }

@@ -8,15 +8,18 @@ import java.util.Random;
 public class GameBoard {
     private static final int NUM_ROWS = 8;
     private static final int NUM_COLS = 5;
-    private char[][] gameBoard;
+    public char[][] gameBoard;
     public static final char BLUE_TILE = '.';
     public static final char YELLOW_TILE = 'Y';
-    public static final char WALL_REP = 'X';
+//    public static final char WALL_REP = 'X';
     Random random = new Random();
+    Display display;
+
     /**
      * Constructing a gameBoard object with empty spots.
      */
     public GameBoard() {
+//        this.display = display;
         gameBoard = new char[NUM_ROWS][NUM_COLS];
         for (int row = 0; row < NUM_ROWS; row++) {
             for (int col = 0; col < NUM_COLS; col++) {
@@ -24,6 +27,8 @@ public class GameBoard {
             }
         }
         randomize();
+//        display.drawGameBoard();
+
     }
 
     /**
@@ -40,14 +45,6 @@ public class GameBoard {
         }
         return str.toString();
     }
-
-//    public int getWidth() {
-//        return this.NUM_COLS;
-//    }
-//
-//    public int getHeight() {
-//        return this.NUM_ROWS;
-//    }
     /**
      * Randomly generate the Yellow Tile.
      * Grabs a random location of both row and col,
@@ -70,10 +67,13 @@ public class GameBoard {
     }
 
     /**
-     * Resets the board.
+     * Resets the board, upon reclicking, it shuffles the tiles.
      */
     public void reset() {
         randomize();
+        System.out.println(this);
+//        display.drawGameBoard(this);
+
     }
 
     /**
@@ -82,6 +82,7 @@ public class GameBoard {
      * @param y
      */
     public void touch(int x, int y) {
+
 
     }
 

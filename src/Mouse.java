@@ -12,6 +12,11 @@ public class Mouse {
     private double x;
     private double y;
 
+    public Mouse() {
+        getMouseMovedHandler();
+        this.x = 125;
+    }
+
     /**
      * Keeps track of the mouse position using EventHandler.
      * @return the mouse position

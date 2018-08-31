@@ -1,11 +1,8 @@
 import javafx.geometry.Pos;
-import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
@@ -17,12 +14,41 @@ import javafx.stage.Stage;
  */
 public class Display {
  // pass the reference to the instance
-    StackPane pane = new StackPane();
+//    Pane group = new Pane();
+    AnchorPane anchorPane = new AnchorPane();
     VBox vBox = new VBox();
     Circle ball = new Circle();
     public Button reset = new Button("reset");
     public Button play = new Button("play");
     Label scoreLabel = new Label();
+
+    Rectangle grayBar =  new Rectangle(0, 400, 250, 20);
+    Rectangle rectBlue;
+    Rectangle rectYellow;
+
+//    int boardWidth = 215;
+//    int boardHeight = 400;
+//    int boardRows = 8;
+//    int boardCols = 5;
+//    char[][] gameBoard;
+//    public final char BLUE_TILE = '.';
+//    public final char YELLOW_TILE = 'Y';
+//
+//    public int getBoardWidth() {
+//        return  boardWidth;
+//    }
+//
+//    public int getBoardHeight() {
+//        return boardHeight;
+//    }
+//
+//    public int getBoardRows() {
+//        return boardRows;
+//    }
+//
+//    public int getBoardCols() {
+//        return boardCols;
+//    }
 
 
     public Display(Stage primaryStage) {
@@ -36,7 +62,6 @@ public class Display {
     }
 
     public void drawGameBoard() {
-        Group group = new Group();
         GameBoard gameBoard = new GameBoard();
         int xi = 0;
         int yi = 0;
@@ -51,14 +76,14 @@ public class Display {
                     xi += 50;
                     rectBlue.setFill(Color.rgb(72, 103, 178));
                     rectBlue.setStroke(Color.rgb(48, 72, 132));
-                    group.getChildren().add(rectBlue);
+                    anchorPane.getChildren().add(rectBlue);
                     break;
                 case GameBoard.YELLOW_TILE:
                     Rectangle rectYellow = new Rectangle(xi, yi, width1, height1);
                     xi += 50;
                     rectYellow.setFill(Color.rgb(252, 194, 0));
                     rectYellow.setStroke(Color.rgb(48, 72, 132));
-                    group.getChildren().add(rectYellow);
+                    anchorPane.getChildren().add(rectYellow);
                     break;
 
                 case '\n':
@@ -72,24 +97,23 @@ public class Display {
                     return;
             }
         }
-        vBox.getChildren().add(group);
+//        vBox.getChildren().add(anchorPane);
     }
 
     public void drawFloor() {
 //        Canvas canvas = new Canvas(250, 20);
 //        GraphicsContext gc = canvas.getGraphicsContext2D();
-        Rectangle rectangle =  new Rectangle(0, 400, 250, 20);
 //        gc.fillRect(0, 400, 250, 20);
 //        gc.setFill(Color.BLUE);
-        ball.setCenterX(20);
-        ball.setCenterY(20);
+//        ball.setCenterX(125);
+//        ball.setCenterY(410);
         ball.setRadius(10);
         ball.setFill(Color.RED);
-        rectangle.setFill(Color.GRAY);
+        grayBar.setFill(Color.GRAY);
 //        vBox.getChildren().add(canvas);
-//        pane.getChildren().add(canvas);
-        pane.getChildren().addAll(rectangle, ball);
-        vBox.getChildren().add(pane);
+//        anchorPane.getChildren().add(canvas);
+        anchorPane.getChildren().addAll(grayBar, ball);
+        vBox.getChildren().add(anchorPane);
     }
 
     public void setScore(int value) {
@@ -108,13 +132,19 @@ public class Display {
         reset.setDisable(state);
     }
 
+    public void setBallAt(double centerX, double centerY) {
+        ball.setCenterX(centerX);
+        ball.setCenterY(centerY);
+
+    }
+
     public void drawButtons() {
 //        GameControls gameControls = new GameControls();
 //        Score score = new Score();
         HBox hBox = new HBox();
-
-//        reset.setStyle("-fx-font: 22 arial; -fx-font-weight: bold; -fx-background-color: gray");
-//        play.setStyle("-fx-font: 22 arial; -fx-font-weight: bold;");
+        reset.setStyle("-fx-font: 22 arial; -fx-font-weight: bold; -fx-background-color: gray");
+        play.setStyle("-fx-font: 22 arial; -fx-font-weight: bold; -fx-background-color: yellow");
+        setReset(true);
 
         reset.setPrefSize(100, 40);
         play.setPrefSize(100, 40);

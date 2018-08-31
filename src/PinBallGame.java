@@ -1,5 +1,7 @@
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
+import javafx.event.EventHandler;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 /**
@@ -28,15 +30,46 @@ public class PinBallGame extends Application {
         Score score = new Score(display);
 //        Ball ball = new Ball();
 //        Score score = new Score();
-        gameControls.getMode();
-
+//        ball.setStartLocation();
         AnimationTimer animationTimer = new AnimationTimer() {
+            private long nextTime = 0;
             @Override
             public void handle(long now) {
+                if (now > nextTime) {
+//                    ball.setStartLocation();
+                    if (gameControls.getMode()) {
+                        ball.move(1);
+                    }
+                    else {
+                        ball.setStartLocation();
+                    }
 
+                }
 
             }
         };
         animationTimer.start();
+        display.play.setOnMousePressed(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                System.out.println("Clicked play");
+                display.setPlayButton(true);
+                display.setReset(false);
+                display.reset.setStyle("-fx-font: 22 arial; -fx-font-weight: bold; -fx-background-color: yellow");
+                display.play.setStyle("-fx-font: 22 arial; -fx-font-weight: bold; -fx-background-color: gray");
+            }
+        });
+        display.reset.setOnMousePressed(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                System.out.println("Clicked reset");
+                gameBoard.reset();
+                display.setPlayButton(false);
+                display.setReset(true);
+                ball.setStartLocation();
+                display.play.setStyle("-fx-font: 22 arial; -fx-font-weight: bold; -fx-background-color: yellow");
+                display.reset.setStyle("-fx-font: 22 arial; -fx-font-weight: bold; -fx-background-color: gray");
+            }
+        });
     }
 }
