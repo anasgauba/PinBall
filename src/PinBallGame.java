@@ -22,10 +22,10 @@ public class PinBallGame extends Application {
      */
     @Override
     public void start(Stage primaryStage) {
-        Mouse mouse = new Mouse();
-        Display display = new Display(primaryStage);
-        GameControls gameControls = new GameControls(display, mouse);
         GameBoard gameBoard = new GameBoard();
+        Mouse mouse = new Mouse();
+        Display display = new Display(primaryStage, gameBoard);
+        GameControls gameControls = new GameControls(display, mouse);
         Ball ball = new Ball(display, mouse);
         Score score = new Score(display);
 //        Ball ball = new Ball();

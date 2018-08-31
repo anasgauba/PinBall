@@ -9,12 +9,12 @@ import static java.lang.StrictMath.sin;
  */
 public class Ball {
 
-    private double x;
-    private double y;
-    private double angle = Math.toDegrees(0.785398163);
-//    private boolean isPlaying = true;
     Display display;
     Mouse mouse;
+    private double x;
+    private double y;
+    private double angle = Math.toDegrees(-0.785398163);
+//    private boolean isPlaying = true;
 
     /**
      * Ball object has access to display and mouse
@@ -41,19 +41,25 @@ public class Ball {
     public void move(double pixels) {
         double xOffSet = pixels*cos(angle);
         double yOffSet = pixels*sin(angle);
+        x = display.ball.getCenterX();
+        y = display.ball.getCenterY();
         if (setInPlay()) {
+            System.out.println("getting x val " + display.ball.getCenterX());
+            System.out.println("getting y val " + display.ball.getCenterY());
             System.out.println("x before" + x);
 
             x += xOffSet;
             y += yOffSet;
 
-            if (x + display.ball.getRadius() <= 0 || x + display.ball.getRadius() >= display.grayBar.getWidth()) {
+            if (x + display.ball.getRadius() <= 0 || x + display.ball.getRadius() >= display.anchorPane.getWidth()) {
+                System.out.println("Width of the window is " + display.anchorPane.getWidth());
                 System.out.println("xOffset is " + xOffSet);
                 xOffSet += -1;
                 System.out.println("xOffset after is " + xOffSet);
 
             }
-            if (y + display.ball.getRadius() <= 0 || y + display.ball.getRadius() >= display.grayBar.getHeight()) {
+            if (y + display.ball.getRadius() <= 0 || y + display.ball.getRadius() >= display.anchorPane.getHeight()) {
+                System.out.println("Height of the window is " + display.anchorPane.getHeight());
                 yOffSet += -1;
             }
 

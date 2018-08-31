@@ -2,7 +2,9 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.layout.*;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
@@ -15,16 +17,15 @@ import javafx.stage.Stage;
 public class Display {
  // pass the reference to the instance
 //    Pane group = new Pane();
-    AnchorPane anchorPane = new AnchorPane();
     VBox vBox = new VBox();
+    AnchorPane anchorPane = new AnchorPane();
     Circle ball = new Circle();
     public Button reset = new Button("reset");
     public Button play = new Button("play");
     Label scoreLabel = new Label();
 
     Rectangle grayBar =  new Rectangle(0, 400, 250, 20);
-    Rectangle rectBlue;
-    Rectangle rectYellow;
+
 
 //    int boardWidth = 215;
 //    int boardHeight = 400;
@@ -51,8 +52,8 @@ public class Display {
 //    }
 
 
-    public Display(Stage primaryStage) {
-        drawGameBoard();
+    public Display(Stage primaryStage, GameBoard gameBoard) {
+        drawGameBoard(gameBoard);
         drawFloor();
         drawButtons();
         setScore(0);
@@ -61,8 +62,7 @@ public class Display {
         primaryStage.show();
     }
 
-    public void drawGameBoard() {
-        GameBoard gameBoard = new GameBoard();
+    public void drawGameBoard(GameBoard gameBoard) {
         int xi = 0;
         int yi = 0;
         int width1 = 50;
@@ -137,6 +137,7 @@ public class Display {
         ball.setCenterY(centerY);
 
     }
+
 
     public void drawButtons() {
 //        GameControls gameControls = new GameControls();
