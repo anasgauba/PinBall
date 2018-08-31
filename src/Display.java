@@ -63,6 +63,8 @@ public class Display {
     }
 
     public void drawGameBoard(GameBoard gameBoard) {
+        System.out.println(" Change gb ");
+        System.out.println(gameBoard);
         int xi = 0;
         int yi = 0;
         int width1 = 50;

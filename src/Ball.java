@@ -1,3 +1,5 @@
+import java.util.Random;
+
 import static java.lang.Math.cos;
 import static java.lang.StrictMath.sin;
 
@@ -13,7 +15,8 @@ public class Ball {
     Mouse mouse;
     private double x;
     private double y;
-    private double angle = Math.toDegrees(-0.785398163);
+    Random random = new Random();
+    public double angle = Math.toRadians(random.nextInt(0 + 1 + 150) - 150);
 //    private boolean isPlaying = true;
 
     /**
@@ -39,6 +42,7 @@ public class Ball {
      * @param pixels
      */
     public void move(double pixels) {
+        System.out.println("angle is " + angle);
         double xOffSet = pixels*cos(angle);
         double yOffSet = pixels*sin(angle);
         x = display.ball.getCenterX();
@@ -47,9 +51,12 @@ public class Ball {
             System.out.println("getting x val " + display.ball.getCenterX());
             System.out.println("getting y val " + display.ball.getCenterY());
             System.out.println("x before" + x);
+            System.out.println("xOffset before " + xOffSet);
+            System.out.println("yOffset before " + yOffSet);
 
             x += xOffSet;
             y += yOffSet;
+
 
             if (x + display.ball.getRadius() <= 0 || x + display.ball.getRadius() >= display.anchorPane.getWidth()) {
                 System.out.println("Width of the window is " + display.anchorPane.getWidth());

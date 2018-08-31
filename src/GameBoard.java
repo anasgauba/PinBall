@@ -53,13 +53,18 @@ public class GameBoard {
      */
     private void randomize() {
         int rowLocation = this.random.nextInt(NUM_ROWS - 2);
-        int colLocation = this.random.nextInt(NUM_COLS - 2);
+        int colLocation = this.random.nextInt(NUM_COLS);
         for (int r = 0; r < NUM_ROWS; r++) {
             for (int c = 0; c < NUM_COLS; c++) {
                 if (gameBoard[rowLocation][colLocation] == BLUE_TILE) {
                     gameBoard[rowLocation][colLocation] = YELLOW_TILE;
                     rowLocation = this.random.nextInt(NUM_ROWS - 2);
-                    colLocation = this.random.nextInt(NUM_COLS - 2);
+                    colLocation = this.random.nextInt(NUM_COLS);
+                }
+                if (gameBoard[rowLocation][colLocation] == YELLOW_TILE) {
+                    gameBoard[rowLocation][colLocation] = BLUE_TILE;
+                    rowLocation = this.random.nextInt(NUM_ROWS - 2);
+                    colLocation = this.random.nextInt(NUM_COLS);
                 }
 
             }

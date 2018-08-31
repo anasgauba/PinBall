@@ -4,6 +4,8 @@ import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
+import java.util.Random;
+
 /**
  * PinBall game coordinator class. A parent class
  * that has access of its children classes such as
@@ -63,7 +65,10 @@ public class PinBallGame extends Application {
             @Override
             public void handle(MouseEvent event) {
                 System.out.println("Clicked reset");
+                Random random = new Random();
+                ball.angle = Math.toRadians(random.nextInt(0 + 1 + 150) - 150);;
                 gameBoard.reset();
+                display.drawGameBoard(gameBoard);
                 display.setPlayButton(false);
                 display.setReset(true);
                 ball.setStartLocation();
