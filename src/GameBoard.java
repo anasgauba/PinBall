@@ -89,10 +89,8 @@ public class GameBoard {
      * @return
      */
     public int touch(double x, double y) {
-        if (gameBoard[(int) (y / NUM_ROWS)][(int) (x / NUM_COLS)] == YELLOW_TILE) {
-            System.out.println(x);
-            System.out.println(y);
-            gameBoard[(int) (y / NUM_ROWS)][(int) (x / NUM_COLS)] = BLUE_TILE;
+        if (gameBoard[(int) (NUM_ROWS / y)][(int) (NUM_COLS / x)] == YELLOW_TILE) {
+            gameBoard[(int) (NUM_ROWS / y)][(int) (NUM_COLS / x)] = BLUE_TILE;
             return 1;
         }
         return 0;

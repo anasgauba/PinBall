@@ -16,7 +16,10 @@ import java.util.Random;
  * @author Anas Farooq Gauba
  */
 public class PinBallGame extends Application {
-
+    /**
+     * Launches the game.
+     * @param args arguments
+     */
     public static void main(String[]args) {
         launch(args);
     }
@@ -49,9 +52,9 @@ public class PinBallGame extends Application {
                     else {
                         ball.setStartLocation();
                     }
-                    if (gameBoard.touch(display.ball.getCenterX(), display.ball.getCenterY()) == 1){
-                        score.incrementBy(10);
-                    }
+//                    if (gameBoard.touch(display.ball.getCenterX(), display.ball.getCenterY()) == 1){
+//                        score.incrementBy(10);
+//                    }
                 }
 
             }
