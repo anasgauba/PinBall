@@ -3,3 +3,5 @@ PinBall Game:
  - Board draws random yellow tiles everytime the game starts.
  - There are two buttons play and reset and a label in between them.
  -
+
+ Some Bugs:

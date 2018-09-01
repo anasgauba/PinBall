@@ -49,7 +49,9 @@ public class PinBallGame extends Application {
                     else {
                         ball.setStartLocation();
                     }
-
+                    if (gameBoard.touch(display.ball.getCenterX(), display.ball.getCenterY()) == 1){
+                        score.incrementBy(10);
+                    }
                 }
 
             }

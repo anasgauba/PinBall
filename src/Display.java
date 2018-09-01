@@ -11,12 +11,15 @@ import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
 /**
+ * Javafx class to display the game. Draws a gameboard, grayBar for
+ * the ball, and sets the buttons and label. Used vBox as a root
+ * node to display vertically. Used anchorPane for the board and grayBar.
+ * Used hbox to layout the buttons and scoreLabel.
+ *
  * @version date: 2018-08-24
  * @author Anas Farooq Gauba
  */
 public class Display {
- // pass the reference to the instance
-//    Pane group = new Pane();
     VBox vBox = new VBox();
     AnchorPane anchorPane = new AnchorPane();
     Circle ball = new Circle();
@@ -28,32 +31,14 @@ public class Display {
     Rectangle rectBlue;
     Rectangle rectYellow;
 
-
-//    int boardWidth = 215;
-//    int boardHeight = 400;
-//    int boardRows = 8;
-//    int boardCols = 5;
-//    char[][] gameBoard;
-//    public final char BLUE_TILE = '.';
-//    public final char YELLOW_TILE = 'Y';
-//
-//    public int getBoardWidth() {
-//        return  boardWidth;
-//    }
-//
-//    public int getBoardHeight() {
-//        return boardHeight;
-//    }
-//
-//    public int getBoardRows() {
-//        return boardRows;
-//    }
-//
-//    public int getBoardCols() {
-//        return boardCols;
-//    }
-
-
+    /**
+     * A display object to show everything on the window.
+     * Sets the preferred width and height of the window through
+     * vBox (parent node).
+     *
+     * @param primaryStage displays it on the screen.
+     * @param gameBoard the gameBoard
+     */
     public Display(Stage primaryStage, GameBoard gameBoard) {
         drawGameBoard(gameBoard);
         drawFloor();
@@ -64,9 +49,14 @@ public class Display {
         primaryStage.show();
     }
 
+    /**
+     * Draws the gameBoard. Adds the blue/yellow rectangles based on
+     * the characters 'B', 'Y'. Loops through the board array and
+     * draw the gameBoard. Adds the rectangle to anchorPane.
+     *
+     * @param gameBoard to draw the gameBoard.
+     */
     public void drawGameBoard(GameBoard gameBoard) {
-        System.out.println(" Change gb ");
-        System.out.println(gameBoard);
         int xi = 0;
         int yi = 0;
         int width1 = 50;
@@ -101,25 +91,26 @@ public class Display {
                     return;
             }
         }
-//        vBox.getChildren().add(anchorPane);
     }
 
+    /**
+     * Draws the grayBar with the ball in it.
+     * Adds the rectangle and ball to anchorPane.
+     */
     public void drawFloor() {
-//        Canvas canvas = new Canvas(250, 20);
-//        GraphicsContext gc = canvas.getGraphicsContext2D();
-//        gc.fillRect(0, 400, 250, 20);
-//        gc.setFill(Color.BLUE);
-//        ball.setCenterX(125);
-//        ball.setCenterY(410);
         ball.setRadius(10);
         ball.setFill(Color.RED);
         grayBar.setFill(Color.GRAY);
-//        vBox.getChildren().add(canvas);
-//        anchorPane.getChildren().add(canvas);
         anchorPane.getChildren().addAll(grayBar, ball);
         vBox.getChildren().add(anchorPane);
     }
 
+    /**
+     * Changes the label to the corresponding number.
+     * Styles the scoreLabel.
+     *
+     * @param value the currentScore.
+     */
     public void setScore(int value) {
         scoreLabel.setText(String.valueOf(value));
         scoreLabel.setStyle("-fx-background-color: black");
@@ -128,30 +119,40 @@ public class Display {
 
     }
 
+    /**
+     * Resets the play button to either true or false.
+     *
+     * @param state true/false for reset button.
+     */
     public void setPlayButton(boolean state) {
         play.setDisable(state);
     }
 
+    /**
+     * Resets the reset button to either true or false.
+     *
+     * @param state true/false for reset button.
+     */
     public void setReset(boolean state) {
         reset.setDisable(state);
     }
 
-    public void getBallX(double centerX) {
-        ball.setCenterX(centerX);
-    }
-    public void getBallY(double centerY) {
-        ball.setCenterY(centerY);
-    }
+    /**
+     * Gets the x and y position of the ball.
+     *
+     * @param centerX xPosition of the ball.
+     * @param centerY yPosition of the ball.
+     */
     public void setBallAt(double centerX, double centerY) {
         ball.setCenterX(centerX);
         ball.setCenterY(centerY);
-
     }
 
-
+    /**
+     * Draws buttons play and reset, and draws a label
+     * for score. Initially, the reset button is disabled.
+     */
     public void drawButtons() {
-//        GameControls gameControls = new GameControls();
-//        Score score = new Score();
         HBox hBox = new HBox();
         reset.setStyle("-fx-font: 22 arial; -fx-font-weight: bold; -fx-background-color: gray");
         play.setStyle("-fx-font: 22 arial; -fx-font-weight: bold; -fx-background-color: yellow");

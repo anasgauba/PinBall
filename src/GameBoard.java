@@ -9,9 +9,8 @@ public class GameBoard {
     private static final int NUM_ROWS = 8;
     private static final int NUM_COLS = 5;
     public char[][] gameBoard;
-    public static final char BLUE_TILE = '.';
+    public static final char BLUE_TILE = 'B';
     public static final char YELLOW_TILE = 'Y';
-//    public static final char WALL_REP = 'X';
     Random random = new Random();
     Display display;
 
@@ -26,12 +25,11 @@ public class GameBoard {
             }
         }
         randomize();
-//        display.drawGameBoard();
-
     }
 
     /**
      * Printing the gameBoard as 8x5.
+     *
      * @return the gameBoard.
      */
     public String toString() {
@@ -49,6 +47,7 @@ public class GameBoard {
      * Grabs a random location of both row and col,
      * Checks if the intended location is blue then replace
      * it with yellow. Otherwise, keep looking for blue tile.
+     *
      */
     private void randomize() {
         int rowLocation = this.random.nextInt(NUM_ROWS - 2);
@@ -74,28 +73,28 @@ public class GameBoard {
      * Resets the board, upon reclicking, it shuffles the tiles.
      */
     public void reset() {
-//        gameBoard = new char[NUM_ROWS][NUM_COLS];
-//        for (int row = 0; row < NUM_ROWS; row++) {
-//            for (int col = 0; col < NUM_COLS; col++) {
-//                gameBoard[row][col] = BLUE_TILE;
-//            }
-//        }
         randomize();
-//        randomize();
-//        System.out.println(this);
-//        display.gameBoard = this;
-//        display.drawGameBoard();
-//        display.drawGameBoard();
-
     }
 
+
     /**
+     * Passed in the ball's location for the board
+     * to detect touch. Ball's coordinates might be huge, so
+     * we need to divide it by rows and col to find the location of the
+     * ball on the board. If the ball is in the location where
+     * there's yellow tile, we need to replace it with blue tile.
      *
+     * @param x ball's x coordinates
+     * @param y ball's y coordinates
+     * @return
      */
-    public int touch() {
-//        if (display.ball) {
-//
-//        }
+    public int touch(double x, double y) {
+        if (gameBoard[(int) (y / NUM_ROWS)][(int) (x / NUM_COLS)] == YELLOW_TILE) {
+            System.out.println(x);
+            System.out.println(y);
+            gameBoard[(int) (y / NUM_ROWS)][(int) (x / NUM_COLS)] = BLUE_TILE;
+            return 1;
+        }
         return 0;
     }
 
