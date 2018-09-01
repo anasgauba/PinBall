@@ -9,7 +9,9 @@ import java.util.Random;
 /**
  * PinBall game coordinator class. A parent class
  * that has access of its children classes such as
- * GameBoard, Ball, GameControls, and Score.
+ * GameBoard, Ball, GameControls, and Score. It also
+ * has access to display class so that we can layout some javafx
+ * together.
  * @version date: 2018-08-24
  * @author Anas Farooq Gauba
  */
@@ -19,8 +21,13 @@ public class PinBallGame extends Application {
         launch(args);
     }
     /**
-     * instantiate all classes
-     * animation timer
+     * Instantiate all classes, animation timer, ActionListener for the buttons.
+     * Sets up the animation for the ball to move.
+     * Otherwise, sents the ball to the center.
+     * ActionListeners for the play and reset button. Styled the buttons
+     * and for the reset button pressed, hides the button, gameBoard resets and
+     * play button enables.
+     * @param primaryStage - displays it on the screen.
      */
     @Override
     public void start(Stage primaryStage) {
@@ -30,17 +37,14 @@ public class PinBallGame extends Application {
         GameControls gameControls = new GameControls(display, mouse);
         Ball ball = new Ball(display, mouse);
         Score score = new Score(display);
-//        Ball ball = new Ball();
-//        Score score = new Score();
-//        ball.setStartLocation();
+
         AnimationTimer animationTimer = new AnimationTimer() {
             private long nextTime = 0;
             @Override
             public void handle(long now) {
                 if (now > nextTime) {
-//                    ball.setStartLocation();
                     if (gameControls.getMode()) {
-                        ball.move(1);
+                        ball.move(10);
                     }
                     else {
                         ball.setStartLocation();
@@ -51,10 +55,10 @@ public class PinBallGame extends Application {
             }
         };
         animationTimer.start();
+
         display.play.setOnMousePressed(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                System.out.println("Clicked play");
                 display.setPlayButton(true);
                 display.setReset(false);
                 display.reset.setStyle("-fx-font: 22 arial; -fx-font-weight: bold; -fx-background-color: yellow");
@@ -64,14 +68,12 @@ public class PinBallGame extends Application {
         display.reset.setOnMousePressed(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                System.out.println("Clicked reset");
                 Random random = new Random();
-                ball.angle = Math.toRadians(random.nextInt(0 + 1 + 150) - 150);;
+                ball.angle = Math.toRadians(random.nextInt(240 ) + 30);
                 gameBoard.reset();
                 display.drawGameBoard(gameBoard);
                 display.setPlayButton(false);
                 display.setReset(true);
-                ball.setStartLocation();
                 display.play.setStyle("-fx-font: 22 arial; -fx-font-weight: bold; -fx-background-color: yellow");
                 display.reset.setStyle("-fx-font: 22 arial; -fx-font-weight: bold; -fx-background-color: gray");
             }

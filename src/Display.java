@@ -25,6 +25,8 @@ public class Display {
     Label scoreLabel = new Label();
 
     Rectangle grayBar =  new Rectangle(0, 400, 250, 20);
+    Rectangle rectBlue;
+    Rectangle rectYellow;
 
 
 //    int boardWidth = 215;
@@ -74,14 +76,14 @@ public class Display {
         for (char aBoard : board) {
             switch (aBoard) {
                 case GameBoard.BLUE_TILE:
-                    Rectangle rectBlue = new Rectangle(xi, yi, width1, height1);
+                    rectBlue = new Rectangle(xi, yi, width1, height1);
                     xi += 50;
                     rectBlue.setFill(Color.rgb(72, 103, 178));
                     rectBlue.setStroke(Color.rgb(48, 72, 132));
                     anchorPane.getChildren().add(rectBlue);
                     break;
                 case GameBoard.YELLOW_TILE:
-                    Rectangle rectYellow = new Rectangle(xi, yi, width1, height1);
+                    rectYellow = new Rectangle(xi, yi, width1, height1);
                     xi += 50;
                     rectYellow.setFill(Color.rgb(252, 194, 0));
                     rectYellow.setStroke(Color.rgb(48, 72, 132));
@@ -134,6 +136,12 @@ public class Display {
         reset.setDisable(state);
     }
 
+    public void getBallX(double centerX) {
+        ball.setCenterX(centerX);
+    }
+    public void getBallY(double centerY) {
+        ball.setCenterY(centerY);
+    }
     public void setBallAt(double centerX, double centerY) {
         ball.setCenterX(centerX);
         ball.setCenterY(centerY);

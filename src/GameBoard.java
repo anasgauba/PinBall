@@ -19,7 +19,6 @@ public class GameBoard {
      * Constructing a gameBoard object with empty spots.
      */
     public GameBoard() {
-//        this.display = display;
         gameBoard = new char[NUM_ROWS][NUM_COLS];
         for (int row = 0; row < NUM_ROWS; row++) {
             for (int col = 0; col < NUM_COLS; col++) {
@@ -75,20 +74,29 @@ public class GameBoard {
      * Resets the board, upon reclicking, it shuffles the tiles.
      */
     public void reset() {
+//        gameBoard = new char[NUM_ROWS][NUM_COLS];
+//        for (int row = 0; row < NUM_ROWS; row++) {
+//            for (int col = 0; col < NUM_COLS; col++) {
+//                gameBoard[row][col] = BLUE_TILE;
+//            }
+//        }
         randomize();
-        System.out.println(this);
-//        display.drawGameBoard(this);
+//        randomize();
+//        System.out.println(this);
+//        display.gameBoard = this;
+//        display.drawGameBoard();
+//        display.drawGameBoard();
 
     }
 
     /**
      *
-     * @param x
-     * @param y
      */
-    public void touch(int x, int y) {
-
-
+    public int touch() {
+//        if (display.ball) {
+//
+//        }
+        return 0;
     }
 
 }

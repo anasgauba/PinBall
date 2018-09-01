@@ -1,7 +1,6 @@
 import java.util.Random;
 
-import static java.lang.Math.cos;
-import static java.lang.StrictMath.sin;
+import static java.lang.Math.*;
 
 /**
  * Ball class to make the ball start at a specified
@@ -13,10 +12,12 @@ public class Ball {
 
     Display display;
     Mouse mouse;
-    private double x;
-    private double y;
+    private double xCoord;
+    private double yCoord;
     Random random = new Random();
-    public double angle = Math.toRadians(random.nextInt(0 + 1 + 150) - 150);
+    public double angle = Math.toRadians(random.nextInt(240 ) + 30);
+//    public double angle = Math.toRadians(225);
+
 //    private boolean isPlaying = true;
 
     /**
@@ -42,38 +43,69 @@ public class Ball {
      * @param pixels
      */
     public void move(double pixels) {
-        System.out.println("angle is " + angle);
+//        System.out.println("anchor pane " + display.anchorPane.getWidth());
+//        System.out.println("angle is " + angle);
         double xOffSet = pixels*cos(angle);
         double yOffSet = pixels*sin(angle);
-        x = display.ball.getCenterX();
-        y = display.ball.getCenterY();
+        this.xCoord = display.ball.getCenterX();
+        this.yCoord = display.ball.getCenterY();
         if (setInPlay()) {
-            System.out.println("getting x val " + display.ball.getCenterX());
-            System.out.println("getting y val " + display.ball.getCenterY());
-            System.out.println("x before" + x);
+//            System.out.println("getting x val " + display.ball.getCenterX());
+//            System.out.println("getting y val " + display.ball.getCenterY());
+//            System.out.println("x before" + x);
+//            System.out.println("xOffset before " + xOffSet);
+//            System.out.println("yOffset before " + yOffSet);
+
+//            xCoord += xOffSet;
+//            yCoord += yOffSet;
+            xCoord += xOffSet;
+            yCoord += yOffSet;
             System.out.println("xOffset before " + xOffSet);
             System.out.println("yOffset before " + yOffSet);
+            if (xCoord - display.ball.getRadius() <= 0 || xCoord + display.ball.getRadius() >= display.anchorPane.getWidth()) {
+//                System.out.println("pane width is " + display.anchorPane.getWidth());
+//                System.out.println("xOffset is " + xOffSet);
+//                System.out.println("x is " + xCoord);
+                xOffSet *= -1;
+                System.out.println("xAngle before " + angle);
+                if (xOffSet != 0) {
+                    angle = tan(yOffSet / xOffSet);
+                    System.out.println("xAngle after " + angle);
+                }
+                else {
+                    angle = tan(yOffSet / xOffSet);
+                }
 
-            x += xOffSet;
-            y += yOffSet;
-
-
-            if (x + display.ball.getRadius() <= 0 || x + display.ball.getRadius() >= display.anchorPane.getWidth()) {
-                System.out.println("Width of the window is " + display.anchorPane.getWidth());
-                System.out.println("xOffset is " + xOffSet);
-                xOffSet += -1;
-                System.out.println("xOffset after is " + xOffSet);
+//                System.out.println("xOffset after is " + xOffSet);
+//                display.getBallX(x);
 
             }
-            if (y + display.ball.getRadius() <= 0 || y + display.ball.getRadius() >= display.anchorPane.getHeight()) {
-                System.out.println("Height of the window is " + display.anchorPane.getHeight());
-                yOffSet += -1;
+            if (yCoord - display.ball.getRadius() <= 0 || yCoord + display.ball.getRadius() >= display.anchorPane.getHeight()) {
+//                System.out.println("pane height is " + display.anchorPane.getHeight());
+//                System.out.println("yOffset is " + yOffSet);
+//                System.out.println("y is " + yCoord);
+                yOffSet *= -1;
+                System.out.println("yAngle before " + angle);
+                if (xOffSet != 0) {
+                    angle = tan(yOffSet / xOffSet);
+                    System.out.println("yAngle after " + angle);
+                }
+                else {
+                    angle = tan(yOffSet / xOffSet);
+                }
+//                System.out.println("yOffset after is " + yOffSet);
+//                display.getBallY(y);
             }
 
-            System.out.println("ball x " + x);
-            System.out.println("ball y " + y);
+            System.out.println("xOffset after " + xOffSet);
+            System.out.println("yOffset after " + yOffSet);
+
+
+
+//            System.out.println("ball x " + x);
+//            System.out.println("ball y " + y);
         }
-        display.setBallAt(x, y);
+        display.setBallAt(xCoord, yCoord);
     }
 
     public void getLocation() {
